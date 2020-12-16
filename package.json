@@ -1,6 +1,6 @@
 {
   "name": "@zeklouis/react-video-seek-slider",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "types": "dist/index.d.ts",
   "description": "a video seek slider",
   "author": "zeklouis (FORKED from pengyuan)",

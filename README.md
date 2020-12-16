@@ -1,4 +1,4 @@
-# @yay2008/react-video-seek-slider
+# @zeklouis/react-video-seek-slider forked from @yay2008
 
 > a video seek slider
 
@@ -6,46 +6,47 @@
 
 
 
-## 1. 说明
+## 1. Description
 
-本项目技术选型为：`React` `Typescript`
-打包工具为： `rollup`  
+This project is using：`React` `Typescript`
+
+Packaging tools are： `rollup`  
 
 
 
-## 2. 安装
+## 2. Installation
 
 ```bash
-npm install --save @yay2008/react-video-seek-slider
+npm install --save @zeklouis/react-video-seek-slider
 
-或者
+or
 
-yarn add @yay2008/react-video-seek-slider
+yarn add @zeklouis/react-video-seek-slider
 ```
 
 
 
-## 3. 接口说明
+## 3. API
 
-| 参数                       | 说明               | 类型                                         | 默认值 |
+| Parameter                       | Description               | Type                                         | Default |
 | :------------------------- | :----------------- | :------------------------------------------- | :----: |
-| fullTime                | 总时长    | number                                  |        |
-| currentTime             | 目前时间 | number |        |
-| onChange | 变化回调 | (time: number, offsetTime: number) => void |        |
-| offset | 起始时间 | number | 0 |
-| bufferProgress? | buffer 进度 | number          |        |
-| hideHoverTime? | 是否开启 hover 显示时间功能 | boolen         | false |
-| secondsPrefix? | 秒的显示 | string         | "00:" |
-| minutesPrefix? | 分的显示 | string          | "00:" |
-| limitTimeTooltipBySides? | 三方按钮插入的位置 | boolean         |        |
-| sliderColor? | 进度条颜色 | string          |        |
-| sliderHoverColor? | hover 显示的进度条颜色 | string          |        |
-| thumbColor? | thumb 颜色 | string          |        |
-| bufferColor? | buffer 的颜色 | string          |        |
+| fullTime                | Total time    | number                                  |        |
+| currentTime             | Current time | number |        |
+| onChange | Change callback | (time: number, offsetTime: number) => void |        |
+| offset | Offset | number | 0 |
+| bufferProgress? | buffer | number          |        |
+| hideHoverTime? | Whether to enable hover display time function | boolen         | false |
+| secondsPrefix? | Second display | string         | "00:" |
+| minutesPrefix? | Points display | string          | "00:" |
+| limitTimeTooltipBySides? | Where to insert the three-way button | boolean         |        |
+| sliderColor? | Progress bar color | string          |        |
+| sliderHoverColor? | The color of the progress bar displayed by hover | string          |        |
+| thumbColor? | thumb color | string          |        |
+| bufferColor? | buffer color | string          |        |
 
 
 
-## 4. 使用概览
+## 4. Usage overview
 
 ```tsx
 import * as React from "react";
@@ -55,18 +56,14 @@ export default class ToolBoxExample extends React.Component<{}, {}>
   render () {
     return (
       <SeekSlider
-          // 全部时间
          fullTime={player.timeDuration}
-          // 目前时间
          currentTime={this.getCurrentTime(this.state.currentTime)}
-          // 时间变化的回调
          onChange={(time: number, offsetTime: number) => {
              if (this.state.player) {
                  this.setState({currentTime: time});
                 this.state.player.seekToScheduleTime(time);
              }
          }}
-         // hover 显示时间
          hideHoverTime={true}
          limitTimeTooltipBySides={true}
         />
@@ -75,44 +72,44 @@ export default class ToolBoxExample extends React.Component<{}, {}>
 }
 ```
 
-## 5. 启动项目
+## 5. Start the project
 
-1. 获取源码
+1. Get the source code
 
     ```bash
-    git clone https://github.com/yay2008/react-video-seek-slider.git
+    git clone https://github.com/zeklouis/react-video-seek-slider.git
     ```
 
-2. 进入项目并安装库文件依赖
+2. Enter the project and install library file dependencies
 
     ```bash
     cd react-video-seek-slider
     yarn
     ```
 
-3. 启动库文件项目
+3. Start library file project
 
     ```bash
         yarn start
     ```
 
-4. 进入项目并安装 `example` 文件依赖
+4. And installed into the project examplefile dependencies
 
     ```bash
         cd example
         yarn
     ```
 
-5. 启动 `example` 项目
+5. Start exampleproject
 
     ```bash
         yarn start
     ```
 
-## 6. 项目截图
+## 6. Project screenshot
 
 ![slider](https://ohuuyffq2.qnssl.com/WeChat9c5904e21b183e907841753055f7d650.png)
 
 ## License
 
-MIT © [yay2008](https://github.com/yay2008)
+MIT © [zeklouis](https://github.com/zeklouis)

@@ -1,11 +1,11 @@
 {
-  "name": "@yay2008/react-video-seek-slider",
-  "version": "1.0.6",
+  "name": "@zeklouis/react-video-seek-slider",
+  "version": "1.0.8",
   "types": "dist/index.d.ts",
   "description": "a video seek slider",
-  "author": "pengyuan",
+  "author": "zeklouis (FORKED from pengyuan)",
   "license": "MIT",
-  "repository": "https://github.com/yay2008/react-video-seek-slider",
+  "repository": "https://github.com/ZekLouis/react-video-seek-slider",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -18,8 +18,8 @@
     "test:watch": "react-scripts-ts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
+    "prepare": "npm run build",
+    "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {

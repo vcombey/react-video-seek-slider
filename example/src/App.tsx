@@ -57,7 +57,6 @@ export default class App extends React.Component<{}, AppStates> {
                 this.setState({
                     currentTime: time,
                 });
-                console.log("changeTime", time);
             }}
             onChangeCurTime={(mtime: number) => console.log(mtime)}
             limitTimeTooltipBySides={true}

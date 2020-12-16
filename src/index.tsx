@@ -95,7 +95,6 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
    * @param event
    */
   private handleTouchStart = (event: any): void => {
-    console.log('touchstart',event);
     let pageX: number = 0;
 
     for (let i = 0; i < event.changedTouches.length; i++) {
@@ -146,14 +145,12 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
       const percent: number = position * 100 / this.state.trackWidth;
       const time: number = +(percent * (this.props.fullTime / 100)).toFixed(0);
       this.props.onChangeCurTime(time);
-      console.log('touchend', this.state.seekHoverPosition);
     }
   }
 
   private setTrackWidthState = (): void => {
     const track = this.track;
     if (track) {
-      console.log('this.track.offsetWidth', track.offsetWidth);
       setTimeout( () => {
         this.setState({
           trackWidth: track.offsetWidth,
@@ -275,7 +272,6 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
     if (!state) {
       this.props.onChange(time, (time + this.offset));
     }
-    console.log('state', !state ? 0 : this.state.seekHoverPosition);
     this.setState({
       seekHoverPosition:  this.state.seekHoverPosition,
     });
@@ -293,7 +289,6 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
 
   private setMobileSeeking = (state: boolean): void => {
     this.mobileSeeking = state;
-    console.log('mobileSeeking', state, this.state.seekHoverPosition);
 
     this.seekOnChange(state);
   }

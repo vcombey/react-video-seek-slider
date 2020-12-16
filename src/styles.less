@@ -2,21 +2,24 @@
 @white_nearly: #F5F5F5;
 @main_color_blue: #005BF6;
 
-
 .ui-video-seek-slider {
   position: relative;
   width: 100%;
+
   &:focus {
     outline: none;
   }
+
   .track {
     padding: 10px 0;
     cursor: pointer;
     outline: none;
+
     &:focus {
       border: 0;
       outline: none;
     }
+
     .main {
       width: 100%;
       height: @track-height-default;
@@ -27,10 +30,12 @@
       top: 8.5px;
       transition: transform .4s;
       outline: none;
+
       &:focus {
         border: 0;
         outline: none;
       }
+
       .buffered {
         position: absolute;
         background-color: rgba(255, 255, 255, 0.3);
@@ -40,6 +45,7 @@
         z-index: 2;
         transform-origin: 0 0;
       }
+
       .seek-hover {
         position: absolute;
         background-color: rgba(255, 255, 255, 0.5);
@@ -51,6 +57,7 @@
         opacity: 0;
         transition: opacity .4s;
       }
+
       .connect {
         position: absolute;
         background-color: @main_color_blue;
@@ -62,12 +69,14 @@
         transform-origin: 0 0;
       }
     }
+
     &.active {
       .main {
         transform: scaleY(2);
       }
     }
   }
+
   .thumb {
     pointer-events: none;
     position: absolute;
@@ -77,6 +86,7 @@
     top: 4px;
     z-index: 4;
     transform: translateX(100px);
+
     .handler {
       transition: transform .2s;
       border-radius: 100%;
@@ -86,6 +96,7 @@
       opacity: 0;
       transform: scale(.4);
     }
+
     &.active {
       .handler {
         opacity: 1;
@@ -93,6 +104,7 @@
       }
     }
   }
+
   .hover-time {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
@@ -107,10 +119,12 @@
     opacity: 0;
     transform: translateX(150px);
     pointer-events: none;
+
     &.active {
       opacity: 1;
     }
   }
+
   &:hover {
     .track {
       .main {

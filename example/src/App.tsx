@@ -46,17 +46,20 @@ export default class App extends React.Component<{}, AppStates> {
 
     private getSlider(): React.ReactNode {
         return <SeekSlider
-            fullTime={11150}
+            fullTime={this.video ? this.video.duration : 11150}
             thumbColor={"black"}
             bufferColor={"#D8D8D8"}
             sliderColor={"pink"}
             // sliderHoverColor={"red"}
-            currentTime={this.state.currentTime}
+            currentTime={this.video ? this.video.currentTime : this.state.currentTime}
             // bufferProgress={this.state.progress}
-            onChange={(time: number, offsetTime: number) => {
+            onChange={(time: number) => {
                 this.setState({
                     currentTime: time,
                 });
+                if (this.video) {
+                    this.video.currentTime = this.state.currentTime;
+                }
             }}
             onChangeCurTime={(mtime: number) => console.log(mtime)}
             limitTimeTooltipBySides={true}
@@ -68,8 +71,11 @@ export default class App extends React.Component<{}, AppStates> {
             <div className="container"
             >
                 <h1>React slider</h1>
-                <video width={480} height={360} ref={ref => this.video = ref} controls={true} src={"http://ykd-vod.yunkaodian.com/13.mp4"}/>
-                {this.getSlider()}
+                <video width={480} height={360} ref={ref => this.video = ref} muted={true} controls={false}
+                       src={"http://ykd-vod.yunkaodian.com/13.mp4"} preload="preload"/>
+                {this.video &&
+                 this.getSlider()
+                }
             </div>
         );
     }

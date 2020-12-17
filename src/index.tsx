@@ -4,6 +4,7 @@ export type Time = {
     hh: string;
     mm: string;
     ss: string;
+    ms: string;
 };
 
 export type VideoSeekSliderProps = {
@@ -134,11 +135,6 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
                 seekHoverPosition: position,
             });
 
-            // if (this.seeking) {
-            //   const percent: number = position * 100 / this.state.trackWidth;
-            //   const time: number = +(percent * (this.props.fullTime / 100)).toFixed(0);
-            //   this.props.onChange(time, (time + this.offset));
-            // }
             const percent: number = position * 100 / this.state.trackWidth;
             const time: number = +(percent * (this.props.fullTime / 100)).toFixed(0);
             this.props.onChangeCurTime(time);
@@ -194,7 +190,6 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
             };
         } else {
             const position: number = this.state.trackWidth / (this.props.fullTime / this.props.currentTime);
-            // const position: number = this.state.seekHoverPosition - this.hoverTime.offsetWidth / 2;
             return {
                 transform: `translateX(${position}px)`,
             };
@@ -231,31 +226,41 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
     }
 
     private secondsToTime(seconds: number): Time {
-        seconds = Math.round(seconds + this.offset);
+        seconds = Math.round((seconds + this.offset) * 1000) / 1000;
 
         const hours: number = Math.floor(seconds / 3600);
         const divirsForMinutes: number = seconds % 3600;
         const minutes: number = Math.floor(divirsForMinutes / 60);
         const sec: number = Math.ceil(divirsForMinutes % 60);
+        const ms: number = Math.round((seconds % 1) * 1000);
+        let mSeconds: string = ms.toString();
+
+        if (ms < 10) {
+            mSeconds = "00" + ms;
+        } else if (ms < 100) {
+            mSeconds = "0" + ms;
+        }
 
         return {
             hh: hours.toString(),
             mm: minutes < 10 ? "0" + minutes : minutes.toString(),
             ss: sec < 10 ? "0" + sec : sec.toString(),
+            ms: mSeconds,
         };
     }
 
     private getHoverTime(): string {
         const percent: number = this.state.seekHoverPosition * 100 / this.state.trackWidth;
-        const time: number = Math.floor(+(percent * (this.props.fullTime / 100)));
+        let time: number = +(percent * (this.props.fullTime / 100));
+        time = Math.floor(time * 1000) / 1000;
         const times: Time = this.secondsToTime(time);
 
         if ((this.props.fullTime + this.offset) < 60) {
-            return this.secondsPrefix + (times.ss);
+            return this.secondsPrefix + (times.ss + ":" + times.ms);
         } else if ((this.props.fullTime + this.offset) < 3600) {
-            return this.minutesPrefix + times.mm + ":" + times.ss;
+            return this.minutesPrefix + times.mm + ":" + times.ss + ":" + times.ms;
         } else {
-            return times.hh + ":" + times.mm + ":" + times.ss;
+            return times.hh + ":" + times.mm + ":" + times.ss + ":" + times.ms;
         }
     }
 
@@ -291,7 +296,6 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
     }
 
     private isThumbActive(): boolean {
-        // return this.state.seekHoverPosition > 0 || this.seeking;
         return this.mobileSeeking || this.seeking
     }
 

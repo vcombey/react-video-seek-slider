@@ -256,11 +256,11 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
         const times: Time = this.secondsToTime(time);
 
         if ((this.props.fullTime + this.offset) < 60) {
-            return this.secondsPrefix + (times.ss + ":" + times.ms);
+            return this.secondsPrefix + (times.ss);
         } else if ((this.props.fullTime + this.offset) < 3600) {
-            return this.minutesPrefix + times.mm + ":" + times.ss + ":" + times.ms;
+            return this.minutesPrefix + times.mm + ":" + times.ss;
         } else {
-            return times.hh + ":" + times.mm + ":" + times.ss + ":" + times.ms;
+            return times.hh + ":" + times.mm + ":" + times.ss;
         }
     }
 
@@ -307,11 +307,11 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
                     style={{
                         ...this.getPositionStyle(this.props.bufferProgress),
                         backgroundColor: this.props.bufferColor,
-                    }}/>;
+                    }} />;
             } else {
                 return <div
                     className='buffered'
-                    style={this.getPositionStyle(this.props.bufferProgress)}/>;
+                    style={this.getPositionStyle(this.props.bufferProgress)} />;
             }
         } else {
             return null;
@@ -323,12 +323,12 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
         if (this.props.sliderColor) {
             return <div
                 className='connect'
-                style={{...this.getPositionStyle(this.props.currentTime), backgroundColor: this.props.sliderColor}}
+                style={{ ...this.getPositionStyle(this.props.currentTime), backgroundColor: this.props.sliderColor }}
             />;
         } else {
             return <div
                 className='connect'
-                style={this.getPositionStyle(this.props.currentTime)}/>;
+                style={this.getPositionStyle(this.props.currentTime)} />;
         }
     }
 
@@ -336,11 +336,11 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
         if (this.props.sliderHoverColor) {
             return <div
                 className='seek-hover'
-                style={{...this.getSeekHoverPosition(), backgroundColor: this.props.sliderHoverColor}}/>;
+                style={{ ...this.getSeekHoverPosition(), backgroundColor: this.props.sliderHoverColor }} />;
         } else {
             return <div
                 className='seek-hover'
-                style={this.getSeekHoverPosition()}/>;
+                style={this.getSeekHoverPosition()} />;
         }
     }
 
@@ -348,14 +348,14 @@ export default class SeekSlider extends React.Component<VideoSeekSliderProps, Vi
         if (this.props.thumbColor) {
             return <div
                 className={this.isThumbActive() ? 'thumb active' : 'thumb'}
-                style={{...this.getThumbHandlerPosition()}}>
-                <div style={{backgroundColor: this.props.thumbColor}} className="handler" />
+                style={{ ...this.getThumbHandlerPosition() }}>
+                <div style={{ backgroundColor: this.props.thumbColor }} className="handler" />
             </div>;
         } else {
             return <div
                 className={this.isThumbActive() ? 'thumb active' : 'thumb'}
-                style={{...this.getThumbHandlerPosition()}}>
-                <div className='handler'/>
+                style={{ ...this.getThumbHandlerPosition() }}>
+                <div className='handler' />
             </div>;
         }
         return <div></div>
